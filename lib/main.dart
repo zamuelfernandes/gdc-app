@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gdc/models/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Container(),
+      home: Scaffold(
+        backgroundColor: Cores().azul,
+        appBar: AppBar(
+          title: const Text('Initial GDC App'),
+        ),
+      ),
     );
   }
 }
