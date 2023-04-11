@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
-import 'package:gdc/models/colors.dart';
+import 'package:gdc/models/cores.dart';
 
 AppBar CustomBar(
   BuildContext context, {
@@ -10,12 +10,6 @@ AppBar CustomBar(
 }) {
   Widget leftIcons = const SizedBox(width: 50);
   Widget rightIcons = const SizedBox(width: 50);
-  Widget centerTitle = const Center(
-    child: Image(
-      image: AssetImage('assets/images/gdc-logo.png'),
-      width: 60,
-    ),
-  );
 
   if (search) {
     leftIcons = IconButton(
@@ -146,15 +140,6 @@ AppBar CustomBar(
         ),
       ],
     );
-    centerTitle = const Padding(
-      padding: EdgeInsets.only(left: 50),
-      child: Center(
-        child: Image(
-          image: AssetImage('assets/images/gdc-logo.png'),
-          width: 60,
-        ),
-      ),
-    );
   }
 
   return AppBar(
@@ -162,9 +147,14 @@ AppBar CustomBar(
     elevation: 0,
     backgroundColor: Colors.transparent,
     leading: leftIcons,
-    title: centerTitle,
-    actions: [
-      rightIcons,
-    ],
+    centerTitle: true,
+    title: const Padding(
+      padding: EdgeInsets.only(top: 10),
+      child: Image(
+        image: AssetImage('assets/images/gdc-logo.png'),
+        width: 60,
+      ),
+    ),
+    actions: [rightIcons],
   );
 }

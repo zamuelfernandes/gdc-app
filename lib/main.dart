@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gdc/components/custom_bar.dart';
-import 'package:gdc/models/colors.dart';
+import 'package:gdc/models/cores.dart';
+import 'package:gdc/screens/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,11 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        backgroundColor: Cores().azul,
-        //APPBAR ---------------------------------------------------------------
-        appBar: CustomBar(context),
-      ),
+      home: HomeScreen(),
     );
   }
 }
