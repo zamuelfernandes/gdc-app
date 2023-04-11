@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gdc/components/custom_bar.dart';
 import 'package:gdc/models/colors.dart';
 
 void main() {
@@ -18,9 +19,8 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         backgroundColor: Cores().azul,
-        appBar: AppBar(
-          title: const Text('Initial GDC App'),
-        ),
+        //APPBAR ---------------------------------------------------------------
+        appBar: CustomBar(context),
       ),
     );
   }
