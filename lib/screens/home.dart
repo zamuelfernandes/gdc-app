@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:gdc/components/curious_card.dart';
 import 'package:gdc/components/custom_bar.dart';
 import 'package:gdc/models/cores.dart';
+import 'package:gdc/models/curiosidade.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Text(
                   'WebStories',
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 10,
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -90,7 +90,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-            )
+            ),
+            //TITLE ------------------------------------------------------------
+            const Padding(
+              padding: EdgeInsets.only(left: 20, top: 25, bottom: 10),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Sabia que...',
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            //CARROSSEL --------------------------------------------------------
+            CuriousCard(
+              curiosidade: Curiosidade(),
+            ),
           ],
         ),
       ),

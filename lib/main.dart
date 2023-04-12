@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gdc/components/custom_bar.dart';
-import 'package:gdc/models/cores.dart';
 import 'package:gdc/screens/home.dart';
 
 void main() {
