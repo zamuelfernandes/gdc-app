@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class Curiosidade {
   String title;
+  String resume;
   String date;
   String type;
   String autor;
@@ -13,6 +14,8 @@ class Curiosidade {
   Curiosidade({
     this.title =
         'Como as nuvens são formadas, quantos tipos existem e o que significam seus nomes.',
+    this.resume =
+        'This is accordiom text content. Lorem ipsum dolor sit amet. This is accordiom text content... ',
     this.date = '15 de abril de 2021',
     this.type = 'Tipo',
     this.autor = 'Marcelo Duarte',
