@@ -19,6 +19,7 @@ class _CuriousCardState extends State<CuriousCard> {
   @override
   Widget build(BuildContext context) {
     Icon bookmark;
+    String title = 'Sem título';
 
     if (widget.curiosidade.bookmark) {
       bookmark = Icon(
@@ -33,8 +34,12 @@ class _CuriousCardState extends State<CuriousCard> {
         color: Cores().azul,
       );
     }
-    return SizedBox(
-      width: 300,
+    if (widget.curiosidade.title.length > 55) {
+      title = '${widget.curiosidade.title.substring(0, 55)} ...';
+    }
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      width: 340,
       child: Card(
         shape: const RoundedRectangleBorder(),
         elevation: 20,
@@ -42,7 +47,7 @@ class _CuriousCardState extends State<CuriousCard> {
           children: [
             //TOP CONTEXT -------------------------------------------------------
             Container(
-              width: 300,
+              width: 340,
               height: 150,
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -108,8 +113,8 @@ class _CuriousCardState extends State<CuriousCard> {
             ),
             //BOT CONTEXT ------------------------------------------------------
             Container(
-              width: 300,
-              height: 70,
+              width: 340,
+              height: 80,
               decoration: BoxDecoration(
                 color: Colors.white,
                 boxShadow: [
@@ -122,7 +127,7 @@ class _CuriousCardState extends State<CuriousCard> {
                 ],
               ),
               child: Container(
-                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -133,7 +138,7 @@ class _CuriousCardState extends State<CuriousCard> {
                         SizedBox(
                           width: 180,
                           child: Text(
-                            widget.curiosidade.title,
+                            title,
                             style: TextStyle(
                               fontSize: 10,
                               fontFamily: 'Roboto',

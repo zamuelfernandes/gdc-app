@@ -11,7 +11,8 @@ class Curiosidade {
   bool bookmark;
 
   Curiosidade({
-    this.title = 'Como as nuvens são formadas, quantos tipos existem e ...',
+    this.title =
+        'Como as nuvens são formadas, quantos tipos existem e o que significam seus nomes.',
     this.date = '15 de abril de 2021',
     this.type = 'Tipo',
     this.autor = 'Marcelo Duarte',
