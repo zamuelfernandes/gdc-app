@@ -37,18 +37,8 @@ class _ExpandedCardState extends State<ExpandedCard> {
           //LEADING ------------------------------------------------------------
           Container(
             width: 50,
+            height: 65,
             color: Cores().amarelo,
-            child: Container(
-              margin: const EdgeInsets.symmetric(
-                horizontal: 8,
-                vertical: 15,
-              ),
-              child: Icon(
-                Icons.qr_code,
-                color: Cores().amarelo,
-                size: 35,
-              ),
-            ),
           ),
           //CURIOUS ------------------------------------------------------------
           Container(
