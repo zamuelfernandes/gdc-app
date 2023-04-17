@@ -6,6 +6,7 @@ import 'package:gdc/components/custom_bar.dart';
 import 'package:gdc/components/expanded_card.dart';
 import 'package:gdc/models/cores.dart';
 import 'package:gdc/models/curiosidade.dart';
+import 'package:gdc/models/webstorie.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -28,10 +29,36 @@ class _HomeScreenState extends State<HomeScreen> {
     (index) => Curiosidade(),
   );
 
+  List<WebStorie> webStoriesDia = List.generate(
+    5,
+    (index) => WebStorie(),
+  );
+
   int activeIndex = 0;
+  late List<Widget> websoriesDoDia;
+
   @override
   void initState() {
     activeIndex = curiosidadesCards.length ~/ 2;
+    websoriesDoDia = List.generate(webStoriesDia.length, (index) {
+      return Card(
+        elevation: 8,
+        color: Cores().amarelo,
+        shape: CircleBorder(),
+        child: Container(
+          width: 65,
+          height: 65,
+          decoration: BoxDecoration(
+            border: Border.all(color: Cores().amarelo, width: 2),
+            borderRadius: BorderRadius.circular(100),
+            image: DecorationImage(
+              image: webStoriesDia[index].image,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+      );
+    });
     super.initState();
   }
 
@@ -65,53 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
               margin: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Card(
-                    elevation: 8,
-                    color: Cores().laranjaSec,
-                    shape: CircleBorder(),
-                    child: SizedBox(
-                      width: 65,
-                      height: 65,
-                    ),
-                  ),
-                  Card(
-                    elevation: 8,
-                    color: Cores().laranjaSec,
-                    shape: CircleBorder(),
-                    child: SizedBox(
-                      width: 65,
-                      height: 65,
-                    ),
-                  ),
-                  Card(
-                    elevation: 8,
-                    color: Cores().laranjaSec,
-                    shape: CircleBorder(),
-                    child: SizedBox(
-                      width: 65,
-                      height: 65,
-                    ),
-                  ),
-                  Card(
-                    elevation: 8,
-                    color: Cores().laranjaSec,
-                    shape: CircleBorder(),
-                    child: SizedBox(
-                      width: 65,
-                      height: 65,
-                    ),
-                  ),
-                  Card(
-                    elevation: 8,
-                    color: Cores().laranjaSec,
-                    shape: CircleBorder(),
-                    child: SizedBox(
-                      width: 65,
-                      height: 65,
-                    ),
-                  ),
-                ],
+                children: websoriesDoDia,
               ),
             ),
             //TITLE 1 ----------------------------------------------------------
