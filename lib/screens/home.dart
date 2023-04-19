@@ -68,216 +68,220 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Cores().azul,
       //APPBAR -----------------------------------------------------------------
       appBar: CustomBar(context, search: true, onlyNotify: true),
+      extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            //WEBSTORIES -------------------------------------------------------
-            const Padding(
-              padding: EdgeInsets.only(left: 20, top: 20, bottom: 10),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'WebStories',
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 80),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              //WEBSTORIES -------------------------------------------------------
+              const Padding(
+                padding: EdgeInsets.only(left: 20, top: 20, bottom: 10),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'WebStories',
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: websoriesDoDia,
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: websoriesDoDia,
+                ),
               ),
-            ),
-            //TITLE 1 ----------------------------------------------------------
-            const Padding(
-              padding: EdgeInsets.only(left: 20, top: 25, bottom: 10),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Sabia que...',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+              //TITLE 1 ----------------------------------------------------------
+              const Padding(
+                padding: EdgeInsets.only(left: 20, top: 25, bottom: 10),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Sabia que...',
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
-            ),
-            //CARROSSEL --------------------------------------------------------
-            Container(
-              padding: const EdgeInsets.only(top: 10),
-              child: Column(
+              //CARROSSEL --------------------------------------------------------
+              Container(
+                padding: const EdgeInsets.only(top: 10),
+                child: Column(
+                  children: [
+                    CarouselSlider(
+                      items: curiosidadesCards,
+                      options: CarouselOptions(
+                        height: 238,
+                        initialPage: curiosidadesCards.length ~/ 2,
+                        enableInfiniteScroll: false,
+                        //autoPlay: true,
+                        enlargeCenterPage: true,
+                        enlargeStrategy: CenterPageEnlargeStrategy.zoom,
+                        onPageChanged: (index, reason) =>
+                            setState(() => activeIndex = index),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: AnimatedSmoothIndicator(
+                        activeIndex: activeIndex,
+                        count: curiosidadesCards.length,
+                        effect: JumpingDotEffect(
+                          activeDotColor: Cores().laranja,
+                          dotColor: Colors.white,
+                          dotWidth: 10,
+                          dotHeight: 10,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              //TITLE 2 ----------------------------------------------------------
+              Padding(
+                padding: const EdgeInsets.only(left: 20, top: 30, bottom: 20),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Hoje é dia ${DateTime.now().day}/${DateTime.now().month}',
+                    style: const TextStyle(
+                      fontSize: 28,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              //SANFONADO --------------------------------------------------------
+              Column(
                 children: [
-                  CarouselSlider(
-                    items: curiosidadesCards,
-                    options: CarouselOptions(
-                      height: 238,
-                      initialPage: curiosidadesCards.length ~/ 2,
-                      enableInfiniteScroll: false,
-                      //autoPlay: true,
-                      enlargeCenterPage: true,
-                      enlargeStrategy: CenterPageEnlargeStrategy.zoom,
-                      onPageChanged: (index, reason) =>
-                          setState(() => activeIndex = index),
+                  ExpandedCard(
+                    leading: SvgPicture.asset(
+                      'assets/icons/calendar_check.svg',
+                      height: 35,
+                      width: 35,
                     ),
+                    categoryTitle: 'Curiosidade do Dia',
+                    curiosidades: curiosidadesDia,
                   ),
+                  ExpandedCard(
+                    leading: SvgPicture.asset(
+                      'assets/icons/lamp.svg',
+                      height: 35,
+                      width: 35,
+                    ),
+                    categoryTitle: 'Fatos do Dia',
+                    curiosidades: curiosidadesDia,
+                  ),
+                  ExpandedCard(
+                    leading: SvgPicture.asset(
+                      'assets/icons/baloon.svg',
+                      height: 35,
+                      width: 35,
+                    ),
+                    categoryTitle: 'Perguntas Curiosas',
+                    curiosidades: curiosidadesDia,
+                  ),
+                  ExpandedCard(
+                    leading: SvgPicture.asset(
+                      'assets/icons/happy.svg',
+                      height: 35,
+                      width: 35,
+                    ),
+                    categoryTitle: 'Abobrinhas do Dia',
+                    curiosidades: curiosidadesDia,
+                  ),
+                  ExpandedCard(
+                    leading: SvgPicture.asset(
+                      'assets/icons/efem.svg',
+                      height: 35,
+                      width: 35,
+                    ),
+                    categoryTitle: 'Efemérides',
+                    curiosidades: curiosidadesDia,
+                  ),
+                  ExpandedCard(
+                    leading: SvgPicture.asset(
+                      'assets/icons/angels.svg',
+                      height: 35,
+                      width: 35,
+                    ),
+                    categoryTitle: 'Santo do Dia',
+                    curiosidades: curiosidadesDia,
+                  ),
+                  ExpandedCard(
+                    leading: SvgPicture.asset(
+                      'assets/icons/cake.svg',
+                      height: 35,
+                      width: 35,
+                    ),
+                    categoryTitle: 'Aniverssários',
+                    curiosidades: curiosidadesDia,
+                  ),
+                  ExpandedCard(
+                    leading: SvgPicture.asset(
+                      'assets/icons/death.svg',
+                      height: 35,
+                      width: 35,
+                    ),
+                    categoryTitle: 'Falecidos',
+                    curiosidades: curiosidadesDia,
+                  ),
+                  ExpandedCard(
+                    leading: SvgPicture.asset(
+                      'assets/icons/etc.svg',
+                      height: 35,
+                      width: 35,
+                    ),
+                    categoryTitle: 'Frases do Dia',
+                    curiosidades: curiosidadesDia,
+                  ),
+                  //ENDING POINTS ------------------------------------------------
                   Padding(
-                    padding: const EdgeInsets.only(top: 15),
-                    child: AnimatedSmoothIndicator(
-                      activeIndex: activeIndex,
-                      count: curiosidadesCards.length,
-                      effect: JumpingDotEffect(
-                        activeDotColor: Cores().laranja,
-                        dotColor: Colors.white,
-                        dotWidth: 10,
-                        dotHeight: 10,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            //TITLE 2 ----------------------------------------------------------
-            Padding(
-              padding: const EdgeInsets.only(left: 20, top: 30, bottom: 20),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Hoje é dia ${DateTime.now().day}/${DateTime.now().month}',
-                  style: const TextStyle(
-                    fontSize: 28,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-            //SANFONADO --------------------------------------------------------
-            Column(
-              children: [
-                ExpandedCard(
-                  leading: SvgPicture.asset(
-                    'assets/icons/calendar_check.svg',
-                    height: 35,
-                    width: 35,
-                  ),
-                  categoryTitle: 'Curiosidade do Dia',
-                  curiosidades: curiosidadesDia,
-                ),
-                ExpandedCard(
-                  leading: SvgPicture.asset(
-                    'assets/icons/lamp.svg',
-                    height: 35,
-                    width: 35,
-                  ),
-                  categoryTitle: 'Fatos do Dia',
-                  curiosidades: curiosidadesDia,
-                ),
-                ExpandedCard(
-                  leading: SvgPicture.asset(
-                    'assets/icons/baloon.svg',
-                    height: 35,
-                    width: 35,
-                  ),
-                  categoryTitle: 'Perguntas Curiosas',
-                  curiosidades: curiosidadesDia,
-                ),
-                ExpandedCard(
-                  leading: SvgPicture.asset(
-                    'assets/icons/happy.svg',
-                    height: 35,
-                    width: 35,
-                  ),
-                  categoryTitle: 'Abobrinhas do Dia',
-                  curiosidades: curiosidadesDia,
-                ),
-                ExpandedCard(
-                  leading: SvgPicture.asset(
-                    'assets/icons/efem.svg',
-                    height: 35,
-                    width: 35,
-                  ),
-                  categoryTitle: 'Efemérides',
-                  curiosidades: curiosidadesDia,
-                ),
-                ExpandedCard(
-                  leading: SvgPicture.asset(
-                    'assets/icons/angels.svg',
-                    height: 35,
-                    width: 35,
-                  ),
-                  categoryTitle: 'Santo do Dia',
-                  curiosidades: curiosidadesDia,
-                ),
-                ExpandedCard(
-                  leading: SvgPicture.asset(
-                    'assets/icons/cake.svg',
-                    height: 35,
-                    width: 35,
-                  ),
-                  categoryTitle: 'Aniverssários',
-                  curiosidades: curiosidadesDia,
-                ),
-                ExpandedCard(
-                  leading: SvgPicture.asset(
-                    'assets/icons/death.svg',
-                    height: 35,
-                    width: 35,
-                  ),
-                  categoryTitle: 'Falecidos',
-                  curiosidades: curiosidadesDia,
-                ),
-                ExpandedCard(
-                  leading: SvgPicture.asset(
-                    'assets/icons/etc.svg',
-                    height: 35,
-                    width: 35,
-                  ),
-                  categoryTitle: 'Frases do Dia',
-                  curiosidades: curiosidadesDia,
-                ),
-                //ENDING POINTS ------------------------------------------------
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, bottom: 80),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: Colors.white),
-                        width: 10,
-                        height: 10,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Container(
+                    padding: const EdgeInsets.only(top: 20, bottom: 30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
                           decoration: const BoxDecoration(
                               shape: BoxShape.circle, color: Colors.white),
                           width: 10,
                           height: 10,
                         ),
-                      ),
-                      Container(
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: Colors.white),
-                        width: 10,
-                        height: 10,
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle, color: Colors.white),
+                            width: 10,
+                            height: 10,
+                          ),
+                        ),
+                        Container(
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle, color: Colors.white),
+                          width: 10,
+                          height: 10,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
