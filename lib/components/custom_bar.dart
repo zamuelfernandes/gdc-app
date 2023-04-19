@@ -6,6 +6,7 @@ AppBar CustomBar(
   BuildContext context, {
   bool onlySettings = false,
   bool onlyNotify = false,
+  bool onlyShare = false,
   bool search = false,
 }) {
   Widget leftIcons = const SizedBox(width: 50);
@@ -93,7 +94,27 @@ AppBar CustomBar(
           ),
         ),
       ),
-      onPressed: () => Scaffold.of(context).openDrawer(),
+      onPressed: () {},
+    );
+  } else if (onlyShare) {
+    rightIcons = IconButton(
+      icon: Card(
+        color: Cores().amarelo,
+        shape: const CircleBorder(),
+        margin: EdgeInsets.all(0),
+        child: SizedBox(
+          width: 50,
+          height: 50,
+          child: Center(
+            child: Icon(
+              Icons.share,
+              size: 25,
+              color: Cores().azul,
+            ),
+          ),
+        ),
+      ),
+      onPressed: () {},
     );
   } else {
     rightIcons = Row(
@@ -149,7 +170,7 @@ AppBar CustomBar(
     leading: leftIcons,
     centerTitle: true,
     title: const Padding(
-      padding: EdgeInsets.only(top: 10),
+      padding: EdgeInsets.symmetric(vertical: 10),
       child: Image(
         image: AssetImage('assets/images/gdc-logo.png'),
         width: 60,
